@@ -1,0 +1,680 @@
+/* ==========================================================================
+   Variables y Reseteo
+   ========================================================================== */
+:root {
+    --bg-main: #050508;
+    --bg-secondary: #0a0b12;
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --accent: #60a5fa;
+    --accent-glow: #3b82f6;
+    --accent-purple: #a855f7;
+    --accent-green: #10b981;
+    --accent-gold: #fbbf24;
+    
+    --glass-bg: rgba(15, 23, 42, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(96, 165, 250, 0.05), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.05), transparent 25%);
+}
+
+/* Fondo animado */
+#particles-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   Utilidades (Glassmorphism, Textos)
+   ========================================================================== */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--glass-shadow);
+}
+
+.text-accent {
+    color: var(--accent);
+}
+
+.section {
+    padding: 100px 20px;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #fff, var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+}
+
+/* ==========================================================================
+   Navegación
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.nav-brand {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 1;
+}
+
+.glitch {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 800;
+    margin-bottom: 10px;
+    position: relative;
+    /* Efecto neon basico */
+    text-shadow: 0 0 10px rgba(255,255,255,0.2), 0 0 20px rgba(96, 165, 250, 0.4);
+}
+
+.subtitle {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 1.8rem;
+    color: var(--accent-purple);
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 3rem;
+}
+
+.badge {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    background: rgba(96, 165, 250, 0.1);
+    color: var(--text-main);
+    border-color: rgba(96, 165, 250, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--accent-glow), var(--accent-purple));
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    box-shadow: 0 10px 20px rgba(96, 165, 250, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 15px 30px rgba(168, 85, 247, 0.4);
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   Sobre Mi & Skills
+   ========================================================================== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.about-card {
+    padding: 30px;
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+}
+
+.about-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.contribution-list {
+    list-style: none;
+}
+
+.contribution-list li {
+    margin-bottom: 12px;
+    padding-left: 5px;
+}
+
+.subsection-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin: 2rem 0;
+    color: #fff;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.skill-category {
+    padding: 20px;
+}
+
+.skill-category h4 {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tags span {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.tags span:hover {
+    background: rgba(96, 165, 250, 0.2);
+    border-color: rgba(96, 165, 250, 0.5);
+    color: #fff;
+}
+
+.lang-tag {
+    background: rgba(168, 85, 247, 0.1) !important;
+    border-color: rgba(168, 85, 247, 0.3) !important;
+}
+
+/* ==========================================================================
+   Experiencia
+   ========================================================================== */
+.timeline-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.timeline-column h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.timeline-item {
+    position: relative;
+    padding: 25px 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    border-left: 2px solid var(--accent);
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -8px;
+    top: 30px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.timeline-date {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.timeline-item h4 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.project-name {
+    color: var(--accent-purple);
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.achievement {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: rgba(16, 185, 129, 0.1);
+    border-left: 3px solid var(--accent-green);
+    font-size: 0.9rem;
+    border-radius: 0 8px 8px 0;
+}
+
+/* ==========================================================================
+   Proyectos
+   ========================================================================== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.col-span-2 {
+    grid-column: span 2;
+}
+
+.project-card {
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-color: rgba(96, 165, 250, 0.4);
+}
+
+.project-card:hover::before {
+    transform: translateX(100%);
+}
+
+.project-icon {
+    font-size: 2rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    transition: color 0.3s;
+}
+
+.project-card:hover .project-icon {
+    color: var(--accent);
+}
+
+.project-year {
+    font-size: 0.8rem;
+    background: rgba(255,255,255,0.1);
+    padding: 2px 8px;
+    border-radius: 12px;
+    color: var(--text-muted);
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+/* ==========================================================================
+   Muro de Certificaciones (SHELF EN 3D/CSS)
+   ========================================================================== */
+.wall-environment {
+    position: relative;
+    padding: 60px 40px;
+    margin-top: 20px;
+    perspective: 1000px;
+    border-radius: 20px;
+    background: radial-gradient(circle at 50% -20%, #1a1e2e 0%, transparent 70%);
+}
+
+.wall-light {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 300px;
+    background: radial-gradient(ellipse at top, rgba(255,255,255,0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.shelf-container {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 20px;
+}
+
+/* El grid de cuadros reclinados en la repisa */
+.wall-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-bottom: 15px; /* Espacio para que descansen sobre la repisa */
+    position: relative;
+    z-index: 3;
+}
+
+/* Diseño del Marco del Certificado */
+.cert-frame {
+    width: 140px;
+    height: 180px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    box-shadow: 
+        10px 15px 20px rgba(0,0,0,0.5),
+        inset 0 0 0 1px rgba(255,255,255,0.1);
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.cert-inner {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.7);
+    padding: 10px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* Variaciones de Marcos (Oro, Plata, Bronce, Neon, Glass, Cyber) */
+.bronze-frame { border: 6px solid #cd7f32; background: linear-gradient(45deg, #2a1b10, #362215); }
+.silver-frame { border: 6px solid #c0c0c0; background: linear-gradient(45deg, #1f2228, #2b3038); }
+.gold-frame { border: 6px solid #ffd700; background: linear-gradient(45deg, #2e2600, #403600); }
+.neon-frame { border: 4px solid var(--accent-purple); box-shadow: 0 0 15px var(--accent-purple), inset 0 0 10px var(--accent-purple); }
+.glass-frame { border: 2px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+.cyber-frame { border: 2px solid var(--accent-green); background: #000; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(16, 185, 129, 0.1) 10px, rgba(16, 185, 129, 0.1) 20px); }
+
+/* Brillo del cristal */
+.cert-shine {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 40%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+}
+
+/* Hover State de los cuadros */
+.cert-frame:hover {
+    transform: translateY(-20px) scale(1.05) rotateX(5deg);
+    z-index: 10;
+    box-shadow: 
+        0 25px 40px rgba(0,0,0,0.8),
+        0 0 20px rgba(255,255,255,0.1);
+}
+
+.cert-frame:hover .cert-inner {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* Tooltip (Información Flotante) */
+.cert-tooltip {
+    position: absolute;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    width: 250px;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border-left: 3px solid var(--accent);
+    text-align: left;
+    pointer-events: none;
+}
+
+.cert-frame:hover .cert-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.cert-tooltip h4 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.cert-date {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.cert-tooltip p:last-child {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* La Repisa (Shelf base) */
+.wood-shelf {
+    position: absolute;
+    bottom: 0;
+    left: 2%;
+    width: 96%;
+    height: 15px;
+    background: linear-gradient(to bottom, #1e293b, #0f172a);
+    border-radius: 8px;
+    box-shadow: 
+        inset 0 1px 1px rgba(255,255,255,0.3),
+        0 20px 30px rgba(0,0,0,0.8);
+    z-index: 2;
+    transform: perspective(600px) rotateX(20deg);
+}
+
+.shelf-edge {
+    position: absolute;
+    bottom: -5px;
+    width: 100%;
+    height: 5px;
+    background: #0b1121;
+    border-radius: 0 0 8px 8px;
+}
+
+/* ==========================================================================
+   Animaciones de Scroll (Fade In)
+   ========================================================================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 100px;
+    border-radius: 30px 30px 0 0;
+}
+
+.social-links {
+    margin-top: 15px;
+}
+
+.social-links a {
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s, transform 0.3s;
+    display: inline-block;
+}
+
+.social-links a:hover {
+    color: var(--accent);
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+@media (max-width: 900px) {
+    .about-grid, .timeline-grid {
+        grid-template-columns: 1fr;
+    }
+    .col-span-2 {
+        grid-column: span 1;
+    }
+    
+    .navbar {
+        width: 95%;
+        padding: 10px 20px;
+    }
+    
+    .nav-links {
+        display: none; /* simple hidden para mobile sin burger menu */
+    }
+}
+
+@media (max-width: 600px) {
+    .glitch { font-size: 2.5rem; }
+    .subtitle { font-size: 1.3rem; }
+    .cert-tooltip {
+        width: 200px;
+        bottom: 180px;
+    }
+    .wall-grid {
+        gap: 20px;
+    }
+    .cert-frame {
+        width: 110px;
+        height: 150px;
+    }
+}
