@@ -541,7 +541,7 @@ body {
     bottom: 200px;
     left: 50%;
     transform: translateX(-50%) translateY(20px);
-    width: 250px;
+    width: 260px;
     padding: 20px;
     opacity: 0;
     visibility: hidden;
@@ -549,6 +549,10 @@ body {
     border-left: 3px solid var(--accent);
     text-align: left;
     pointer-events: none;
+    background: rgba(10, 11, 18, 0.95) !important; /* Fondo más sólido para legibilidad */
+    backdrop-filter: blur(20px);
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
 .cert-frame:hover .cert-tooltip {
@@ -573,7 +577,8 @@ body {
 
 .cert-tooltip p:last-child {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: #cbd5e1; /* Color más claro que el muted original para mejor contraste */
+    line-height: 1.4;
 }
 
 /* La Repisa (Shelf base) */
@@ -640,6 +645,90 @@ body {
 .social-links a:hover {
     color: var(--accent);
     transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   Blog Section
+   ========================================================================== */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+    height: 100%;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent);
+}
+
+.blog-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.1);
+}
+
+.blog-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.blog-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.blog-content p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.btn-blog {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    align-self: flex-start;
+    padding: 8px 16px;
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+}
+
+.btn-blog:hover {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
 /* ==========================================================================
