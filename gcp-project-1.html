@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCP Project - Arquitectura de Datos Robusta en GCP</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .details-container {
+            max-width: 900px;
+            margin: 120px auto 50px;
+            padding: 40px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .project-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-tagline {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .content-section h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+        }
+
+        .content-section p {
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(96, 165, 250, 0.3);
+        }
+
+        .feature-item h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tech-tag {
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--accent-green);
+        }
+
+        .case-study-list {
+            list-style: none;
+            margin-top: 20px;
+            padding: 0;
+        }
+
+        .case-study-list li {
+            margin-bottom: 25px;
+        }
+
+        .case-study-list h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Estilos para bloques de código */
+        .code-block {
+            background: #1e1e1e;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #d4d4d4;
+            line-height: 1.5;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .variable {
+            color: #9cdcfe;
+        }
+
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .details-container {
+                padding: 20px;
+                margin-top: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-bg"></div>
+
+    <nav class="navbar glass">
+        <div class="nav-brand">CGV</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Volver al Inicio</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="details-container glass fade-in visible">
+            <a href="index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Proyectos</a>
+
+            <header class="project-header">
+                <h1 class="project-title">Arquitectura de Datos Robusta para E-commerce</h1>
+                <p class="project-tagline">Google Cloud Platform | BigQuery | Cloud Functions | Data Lake</p>
+            </header>
+
+            <section class="content-section">
+                <h3><i class="fas fa-file-alt"></i> Contexto del Proyecto</h3>
+                <p>Una multinacional de e-commerce procesa 500GB de transacciones diarias en formato JSON. El sistema
+                    actual es manual y propenso a errores. Necesitan una arquitectura robusta que resuelva una variedad
+                    de problemas relacionados con la ingesta de datos, limpieza, seguridad, costos y automatización.</p>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-tasks"></i> Desafíos a Resolver</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4><i class="fas fa-cloud-download-alt"></i> Ingesta Distribuida</h4>
+                        <p>Los archivos llegan de distintas regiones y deben aterrizar en un "Landing Zone" seguro de
+                            forma constante.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-broom"></i> Validación y Limpieza (ETL)</h4>
+                        <p>Los datos vienen "sucios" (fechas en formatos distintos, campos nulos). Se deben limpiar
+                            antes de analizarlos.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-shield-alt"></i> Gobernanza de Datos (PII)</h4>
+                        <p>Los números de tarjeta y correos deben ser enmascarados para cumplir con leyes de privacidad
+                            (GDPR).</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-layer-group"></i> Arquitectura de Capas</h4>
+                        <p>Separar datos en Bronze (crudos), Silver (limpios) y Gold (listos para negocio) siguiendo la
+                            arquitectura Medallion.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-dollar-sign"></i> Optimización de Costos</h4>
+                        <p>Los datos "Bronze" de más de 30 días deben pasar automáticamente a almacenamiento de archivo
+                            (Coldline).</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-robot"></i> Automatización</h4>
+                        <p>Todo el proceso debe dispararse automáticamente cuando un archivo llega al bucket.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-code"></i> Resolución Técnica con gcloud CLI</h3>
+                <p>Uso de Cloud Functions para la lógica de limpieza (Python) y BigQuery para el análisis. Todo el
+                    despliegue de la infraestructura se realiza mediante comandos automatizables de Google Cloud CLI y
+                    utilidades como <code>gsutil</code> y <code>bq</code>.</p>
+
+                <ul class="case-study-list">
+                    <li>
+                        <h4>1. Infraestructura de Almacenamiento (Lifecycle Management)</h4>
+                        <p>Primero, creamos el "Landing Zone" y configuramos una política para que los archivos se
+                            muevan a almacenamiento barato automáticamente tras 30 días.</p>
+                        <div class="code-block">
+                            <pre><span class="comment"># Crear el archivo de política de ciclo de vida</span>
+<span class="keyword">echo</span> <span class="string">'{
+  "rule": [
+    {
+      "action": {"type": "SetStorageClass", "storageClass": "COLDLINE"},
+      "condition": {"age": 30}
+    }
+  ]
+}'</span> > lifecycle.json
+
+<span class="comment"># Crear el bucket principal</span>
+gsutil mb -l us-east1 gs://global-shop-data-lake/
+
+<span class="comment"># Aplicar la política de costos</span>
+gsutil lifecycle set lifecycle.json gs://global-shop-data-lake/</pre>
+                        </div>
+                    </li>
+
+                    <li>
+                        <h4>2. Capas de Organización (Estructura de Directorios)</h4>
+                        <p>Separamos por país y por estado del dato dentro del mismo bucket implementando una estructura
+                            Medallion.</p>
+                        <div class="code-block">
+                            <pre><span class="comment"># Estructura Medallion</span>
+gsutil cp /dev/null gs://global-shop-data-lake/bronze/espana/
+gsutil cp /dev/null gs://global-shop-data-lake/bronze/mexico/
+gsutil cp /dev/null gs://global-shop-data-lake/silver/processed-data/</pre>
+                        </div>
+                    </li>
+
+                    <li>
+                        <h4>3. Almacén de Datos Optimizado (BigQuery Partitioning)</h4>
+                        <p>En BigQuery, crear una tabla particionada por fecha. Esto reduce drásticamente los costos de
+                            consulta al no tener que leer toda la base de datos cada vez.</p>
+                        <div class="code-block">
+                            <pre><span class="comment"># Crear el Dataset</span>
+bq mk --location=us analytics_gold
+
+<span class="comment"># Crear tabla particionada por el campo 'fecha_venta'</span>
+bq mk --table \
+  --schema id:STRING,pais:STRING,monto:FLOAT,fecha_venta:DATE,sku:STRING \
+  --time_partitioning_field fecha_venta \
+  --time_partitioning_type DAY \
+  analytics_gold.ventas_consolidadas</pre>
+                        </div>
+                    </li>
+
+                    <li>
+                        <h4>4. Seguridad de Grano Fino (IAM)</h4>
+                        <p>Configurar una Service Account con el principio de "menor privilegio". Solo podrá escribir en
+                            el bucket de "Silver" y cargar datos en BigQuery.</p>
+                        <div class="code-block">
+                            <pre><span class="comment"># Crear la identidad del sistema</span>
+gcloud iam service-accounts create pipeline-processor-sa \
+    --display-name=<span class="string">"Procesador Automático de Datos"</span>
+
+<span class="comment"># Asignar permisos de visualización en Bronze y escritura en Silver</span>
+gsutil iam ch serviceAccount:pipeline-processor-sa@mi-proyecto.iam.gserviceaccount.com:objectViewer gs://global-shop-data-lake/bronze/
+gsutil iam ch serviceAccount:pipeline-processor-sa@mi-proyecto.iam.gserviceaccount.com:objectAdmin gs://global-shop-data-lake/silver/
+
+<span class="comment"># Asignar permiso para insertar datos en BigQuery</span>
+gcloud projects add-iam-policy-binding mi-proyecto-id \
+    --member=<span class="string">"serviceAccount:pipeline-processor-sa@mi-proyecto-id.iam.gserviceaccount.com"</span> \
+    --role=<span class="string">"roles/bigquery.dataEditor"</span></pre>
+                        </div>
+                    </li>
+
+                    <li>
+                        <h4>5. El Disparador (Cloud Functions)</h4>
+                        <p> El despliegue se hace por CLI. Esto hace que cada vez que se suba un JSON a /bronze/, la
+                            función se ejecute.</p>
+                        <div class="code-block">
+                            <pre>gcloud functions deploy procesar-ventas \
+  --runtime python311 \
+  --trigger-resource gs://global-shop-data-lake/ \
+  --trigger-event google.storage.object.finalize \
+  --entry-point main \
+  --service-account pipeline-processor-sa@mi-proyecto.iam.gserviceaccount.com</pre>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-tools"></i> Herramientas Utilizadas</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag"><i class="fas fa-cloud"></i> Google Cloud Storage</span>
+                    <span class="tech-tag"><i class="fas fa-database"></i> BigQuery</span>
+                    <span class="tech-tag"><i class="fab fa-python"></i> Cloud Functions (Python)</span>
+                    <span class="tech-tag"><i class="fas fa-terminal"></i> gcloud CLI</span>
+                </div>
+            </section>
+
+            <footer style="text-align: center; margin-top: 50px; color: var(--text-muted);">
+                <p>Desarrollado por Carlos Rafael García Vargas</p>
+            </footer>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

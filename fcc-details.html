@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos FreeCodeCamp - Detalles</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .details-container {
+            max-width: 1000px;
+            margin: 120px auto 50px;
+            padding: 40px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .project-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .certification-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .fcc-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .fcc-item {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .fcc-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .fcc-item h3 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fcc-item h3 i {
+            color: var(--accent);
+        }
+
+        .fcc-item p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-pill {
+            padding: 5px 12px;
+            background: rgba(96, 165, 250, 0.1);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        .date-pill {
+            font-size: 0.8rem;
+            color: var(--accent-purple);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2.2rem;
+            }
+            .details-container {
+                padding: 20px;
+                margin-top: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-bg"></div>
+
+    <nav class="navbar glass">
+        <div class="nav-brand">CGV</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Volver al Inicio</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="details-container glass fade-in visible">
+            <a href="index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Proyectos</a>
+
+            <header class="project-header">
+                <div class="certification-badge">
+                    <i class="fas fa-certificate"></i> Data Analysis with Python Certification
+                </div>
+                <h1 class="project-title">Proyectos de freeCodeCamp</h1>
+                <p class="section-subtitle">Una colección de desafíos técnicos completados para la certificación de Análisis de Datos.</p>
+            </header>
+
+            <div class="fcc-grid">
+                
+                <!-- Proyecto 1 -->
+                <article class="fcc-item">
+                    <span class="date-pill">Enero 2024</span>
+                    <h3><i class="fas fa-chart-line"></i> Sea Level Predictor</h3>
+                    <p>Análisis de datos históricos del nivel del mar desde 1880 para predecir el aumento futuro hasta el año 2050 utilizando regresión lineal.</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">Pandas</span>
+                        <span class="tech-pill">Matplotlib</span>
+                        <span class="tech-pill">Scipy</span>
+                    </div>
+                </article>
+
+                <!-- Proyecto 2 -->
+                <article class="fcc-item">
+                    <span class="date-pill">Enero 2024</span>
+                    <h3><i class="fas fa-history"></i> Page View Time Series Visualizer</h3>
+                    <p>Visualización de series temporales de visitas a páginas web de freeCodeCamp. Implementación de gráficos de líneas, de barras y diagramas de caja para analizar patrones de crecimiento y estacionalidad.</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Pandas</span>
+                        <span class="tech-pill">Matplotlib</span>
+                        <span class="tech-pill">Seaborn</span>
+                    </div>
+                </article>
+
+                <!-- Proyecto 3 -->
+                <article class="fcc-item">
+                    <span class="date-pill">Enero 2024</span>
+                    <h3><i class="fas fa-notes-medical"></i> Medical Data Visualizer</h3>
+                    <p>Exploración y visualización de datos de exámenes médicos. Creación de mapas de calor de correlación y gráficos de conteo para identificar relaciones entre el estilo de vida y las enfermedades cardiovasculares.</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Pandas</span>
+                        <span class="tech-pill">Seaborn</span>
+                        <span class="tech-pill">Matplotlib</span>
+                        <span class="tech-pill">Numpy</span>
+                    </div>
+                </article>
+
+                <!-- Proyecto 4 -->
+                <article class="fcc-item">
+                    <span class="date-pill">Enero 2024</span>
+                    <h3><i class="fas fa-users"></i> Demographic Data Analyzer</h3>
+                    <p>Análisis de un dataset de censos demográficos para extraer estadísticas clave sobre ingresos, educación y horas de trabajo en diferentes países.</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">Pandas</span>
+                    </div>
+                </article>
+
+                <!-- Proyecto 5 -->
+                <article class="fcc-item">
+                    <span class="date-pill">Diciembre 2023</span>
+                    <h3><i class="fas fa-calculator"></i> Mean-Variance-Standard Deviation Calculator</h3>
+                    <p>Desarrollo de una herramienta capaz de calcular la media, varianza, desviación estándar y otras métricas estadísticas en matrices de 3x3 utilizando computación numérica.</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Numpy</span>
+                        <span class="tech-pill">Python</span>
+                    </div>
+                </article>
+
+            </div>
+
+            <footer style="text-align: center; margin-top: 50px; color: var(--text-muted);">
+                <p>Certificación obtenida el 24 de enero de 2024</p>
+                <a href="https://www.freecodecamp.org/certification/carlosrgv99/data-analysis-with-python-v7" target="_blank" class="btn-project" style="margin-top: 20px;">
+                    Ver Certificación Oficial <i class="fas fa-external-link-alt"></i>
+                </a>
+            </footer>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

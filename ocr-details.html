@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Invoice Extractor - Detalles del Proyecto</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .details-container {
+            max-width: 900px;
+            margin: 120px auto 50px;
+            padding: 40px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .project-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-tagline {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .content-section h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+        }
+
+        .feature-item h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            padding: 8px 16px;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+        }
+
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            border: 1px solid var(--glass-border);
+            margin: 20px 0;
+            color: #cbd5e1;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        code {
+            color: var(--accent-green);
+        }
+
+        .structure-list {
+            list-style: none;
+        }
+
+        .structure-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .structure-list li::before {
+            content: '📁';
+            position: absolute;
+            left: 0;
+        }
+
+        .structure-list li.file::before {
+            content: '📄';
+        }
+
+        .output-preview {
+            background: #0f172a;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2.2rem;
+            }
+            .details-container {
+                padding: 20px;
+                margin-top: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-bg"></div>
+
+    <nav class="navbar glass">
+        <div class="nav-brand">CGV</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Volver al Inicio</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="details-container glass fade-in visible">
+            <a href="index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Proyectos</a>
+
+            <header class="project-header">
+                <h1 class="project-title">Invoice OCR Extractor</h1>
+                <p class="project-tagline">(YOLO + PaddleOCR)</p>
+            </header>
+
+            <section class="content-section">
+                <p>Este proyecto es una herramienta avanzada para la extracción automatizada de datos de facturas en formato PDF. Utiliza una arquitectura híbrida que combina la detección de objetos por Inteligencia Artificial para localizar campos específicos y motores de OCR de última generación para la lectura de texto.</p>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-rocket"></i> Características</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>Segmentación Inteligente</h4>
+                        <p>Utiliza YOLO para identificar áreas clave (RUC, Fecha, Totales, Items, etc.).</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>OCR de Alta Precisión</h4>
+                        <p>Implementa PaddleOCR con soporte para español.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Pre-procesamiento</h4>
+                        <p>Conversión de PDF a imagen de alta resolución y re-escalado dinámico.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Validación Automática</h4>
+                        <p>Limpieza y validación de campos críticos mediante regex (RUC, Claves de Acceso).</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Contenerizado</h4>
+                        <p>Listo para desplegarse mediante Docker, optimizado para ejecución en CPU.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-tools"></i> Tecnologías Utilizadas</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Python 3.10</span>
+                    <span class="tech-tag">Ultralytics YOLO</span>
+                    <span class="tech-tag">PaddleOCR</span>
+                    <span class="tech-tag">PyMuPDF (fitz)</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Docker Compose</span>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-folder-open"></i> Estructura del Proyecto</h3>
+                <ul class="structure-list">
+                    <li>input/: Carpeta para archivos PDF a procesar.</li>
+                    <li>output/: Carpeta para resultados JSON e imágenes.</li>
+                    <li>models/: Directorio para el modelo entrenado (best.pt).</li>
+                    <li class="file">main.py: Script principal del pipeline.</li>
+                    <li class="file">dockerfile: Configuración de imagen Docker.</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-cogs"></i> Instalación y Uso</h3>
+                <h4>Opción 1: Con Docker (Recomendado)</h4>
+                <pre><code># 1. Asegura el modelo best.pt en models/
+# 2. Coloca facturas en input/
+# 3. Ejecuta:
+docker-compose up --build</code></pre>
+                
+                <h4>Opción 2: Instalación Local</h4>
+                <pre><code># Crear entorno virtual
+python -m venv venv
+source venv/bin/activate
+
+# Instalar dependencias
+pip install -r requirements.txt
+
+# Ejecutar script
+python main.py --model ./models/best.pt --input ./input --output ./output</code></pre>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-file-code"></i> Formato de Salida</h3>
+                <p>El sistema genera un archivo JSON por cada factura procesada:</p>
+                <pre class="output-preview"><code>{
+    "DIRECCION MATRIZ": "...",
+    "NOMBRE": "...",
+    "FECHA": "DD/MM/YYYY",
+    "RUC": "1792879485001",
+    "RUC_CLIENTE": "...",
+    "ITEM": [
+        "CANTIDAD", "DESCRIPCION", "PRECIO", "..."
+    ],
+    "TOTAL": "...",
+    "CLAVE ACCESO": "..."
+}</code></pre>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-info-circle"></i> Notas de Implementación</h3>
+                <ul>
+                    <li>Optimizado para ejecución en CPU sin sacrificar precisión.</li>
+                    <li>Validación de RUC y Claves de Acceso específica para Ecuador (SRI).</li>
+                    <li>Arquitectura modular que permite intercambiar motores de OCR fácilmente.</li>
+                </ul>
+            </section>
+
+            <footer style="text-align: center; margin-top: 50px; color: var(--text-muted);">
+                <p>Desarrollado por Carlos Rafael García Vargas</p>
+            </footer>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

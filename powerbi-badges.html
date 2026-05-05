@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI - Logros y Certificaciones</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .dashboard-wrapper {
+            max-width: 1200px;
+            margin: 120px auto 50px;
+            padding: 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 20px;
+        }
+
+        .dashboard-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #f2c811, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .dashboard-title p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .kpi-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(242, 200, 17, 0.4);
+        }
+
+        .kpi-title {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+        }
+
+        .kpi-trend {
+            font-size: 0.9rem;
+            color: var(--accent-green);
+        }
+
+        .kpi-icon {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 2rem;
+            color: rgba(242, 200, 17, 0.2);
+        }
+
+        .badges-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .badge-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .badge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f2c811, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .badge-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(242, 200, 17, 0.3);
+        }
+
+        .badge-card:hover::before {
+            opacity: 1;
+        }
+
+        .badge-image-container {
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .badge-image-container img {
+            max-width: 150px;
+            border-radius: 8px;
+            filter: drop-shadow(0 10px 15px rgba(242, 200, 17, 0.2));
+            transition: transform 0.5s ease;
+        }
+
+        .badge-card:hover .badge-image-container img {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .badge-details {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .badge-details h3 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .badge-details p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .badge-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
+            padding-top: 15px;
+        }
+
+        /* Simulación de visualización de datos */
+        .data-viz-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .data-viz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .data-viz-title {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .chart-container {
+            height: 250px;
+            display: flex;
+            align-items: flex-end;
+            gap: 15px;
+            padding-bottom: 30px;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            padding-left: 10px;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(to top, rgba(242, 200, 17, 0.2), rgba(242, 200, 17, 0.8));
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            animation: growBar 1.5s ease-out forwards;
+            transform-origin: bottom;
+            height: 0;
+            transition: filter 0.3s ease;
+        }
+
+        .chart-bar:hover {
+            filter: brightness(1.3);
+            cursor: pointer;
+        }
+
+        .chart-bar::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .chart-bar::before {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85rem;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .chart-bar:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes growBar {
+            from {
+                height: 0;
+            }
+
+            to {
+                height: var(--h);
+            }
+        }
+
+        .y-axis {
+            position: absolute;
+            left: -35px;
+            top: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .chart-bar::after {
+                font-size: 0.6rem;
+                bottom: -30px;
+                transform: translateX(-50%) rotate(-45deg);
+            }
+
+            .y-axis {
+                display: none;
+            }
+
+            .chart-container {
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-bg"></div>
+
+    <nav class="navbar glass">
+        <div class="nav-brand">CGV</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Volver al Inicio</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="dashboard-wrapper fade-in visible">
+            <a href="index.html#certifications" class="back-link"><i class="fas fa-arrow-left"></i> Volver a
+                Certificaciones</a>
+
+            <div class="dashboard-header">
+                <div class="dashboard-title">
+                    <h1><i class="fas fa-chart-bar" style="color: #f2c811;"></i> Power BI Insights</h1>
+                    <p>Portafolio analítico y certificaciones en Microsoft Power BI</p>
+                </div>
+                <div class="dashboard-status glass"
+                    style="padding: 10px 20px; border-radius: 20px; display: flex; align-items: center;">
+                    <span class="pulse-dot"></span>
+                    <span style="font-size: 0.9rem; font-weight: 500;">Datos Sincronizados</span>
+                </div>
+            </div>
+
+
+            <h2 class="data-viz-title" style="margin-bottom: 25px; margin-top: 50px;">Registro de Insignias</h2>
+
+            <!-- Grid de Insignias -->
+            <div class="badges-container">
+
+                <!-- Badge 1 -->
+                <div class="badge-card">
+                    <div class="badge-image-container">
+                        <img src="7649.jpg" alt="Data Transformation Power BI">
+                    </div>
+                    <div class="badge-details">
+                        <h3>Data Transformation in Power BI</h3>
+                        <p>Validación de la capacidad para limpiar, transformar y cargar datos utilizando Power Query.
+                            Incluye técnicas avanzadas de pivotado, fusión de consultas y perfilado de datos para
+                            asegurar la calidad de la información.</p>
+                        <div class="badge-meta">
+                            <span><i class="fas fa-calendar-alt"></i> Abril 2026 </span>
+                            <a href="https://learn.microsoft.com/api/achievements/share/en-us/CarlosGarcia-0883/UAUMKZ83?sharingId=91581E8521161EF1"
+                                target="_blank" style="color: #f2c811; text-decoration: none; font-weight: bold;"><i
+                                    class="fas fa-external-link-alt"></i> Verificar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badge 2 (Ejemplo) -->
+                <div class="badge-card">
+                    <div class="badge-image-container">
+                        <img src="0987.jpg" alt="Data Modeling & DAX">
+                    </div>
+                    <div class="badge-details">
+                        <h3>Data Modeling & DAX</h3>
+                        <p>Creación de modelos relacionales eficientes (esquemas en estrella y copo de nieve). Dominio
+                            de expresiones de análisis de datos (DAX) para el cálculo de métricas complejas e
+                            inteligencia de tiempo.</p>
+                        <div class="badge-meta">
+                            <span><i class="fas fa-calendar-alt"></i> Mayo 2026 </span>
+                            <a href="https://learn.microsoft.com/api/achievements/share/en-us/CarlosGarcia-0883/B9BYU3VD?sharingId=91581E8521161EF1"
+                                target="_blank" style="color: #f2c811; text-decoration: none; font-weight: bold;"><i
+                                    class="fas fa-external-link-alt"></i> Verificar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badge 3 (Ejemplo) -->
+                <div class="badge-card">
+                    <div class="badge-image-container">
+                        <img src="54321.jpg" alt="Data Transformation Power BI">
+                    </div>
+                    <div class="badge-details">
+                        <h3>Get started building with Power BI</h3>
+                        <p>Fundamentos de Power BI para la creación de informes y visualizaciones. Limpieza y
+                            transformacion de datos, modelado de datos y creación de visualizaciones.</p>
+                        <div class="badge-meta">
+                            <span><i class="fas fa-calendar-alt"></i> Mayo 2026</span>
+                            <a href="https://learn.microsoft.com/api/achievements/share/en-us/CarlosGarcia-0883/373PZPQH?sharingId=91581E8521161EF1"
+                                target="_blank" style="color: #f2c811; text-decoration: none; font-weight: bold;"><i
+                                    class="fas fa-external-link-alt"></i> Verificar</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <footer
+                style="text-align: center; margin-top: 50px; color: var(--text-muted); border-top: 1px solid var(--glass-border); padding-top: 30px;">
+                <p>Las decisiones guiadas por datos construyen el futuro.</p>
+            </footer>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        // Animaciones dinámicas de entrada
+        document.addEventListener("DOMContentLoaded", () => {
+            const bars = document.querySelectorAll('.chart-bar');
+            bars.forEach((bar, index) => {
+                bar.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+
+</html>
