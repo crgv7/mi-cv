@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clasificación de Narrativas y Detección de Desinformación</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .details-container {
+            max-width: 900px;
+            margin: 120px auto 50px;
+            padding: 40px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .project-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-tagline {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .content-section h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+        }
+
+        .feature-item h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            padding: 8px 16px;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+        }
+
+        .structure-list {
+            list-style: none;
+        }
+
+        .structure-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .structure-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2.2rem;
+            }
+            .details-container {
+                padding: 20px;
+                margin-top: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-bg"></div>
+
+    <nav class="navbar glass">
+        <div class="nav-brand">CGV</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Volver al Inicio</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="details-container glass fade-in visible">
+            <a href="index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Proyectos</a>
+
+            <header class="project-header">
+                <h1 class="project-title">Clasificación de Narrativas y Detección de Desinformación</h1>
+                <p class="project-tagline">Proceso de postulación a Beca de Excelencia (Colombia)</p>
+                <div style="margin-top: 25px;">
+                    <a href="https://github.com/crgv7/clasificadorDesinformacion" target="_blank" class="btn-project">
+                        <i class="fab fa-github"></i> Ver Repositorio en GitHub
+                    </a>
+                </div>
+            </header>
+
+            <section class="content-section">
+                <p>Diseño y desarrollo de un pipeline de procesamiento de lenguaje natural (NLP) para la identificación automatizada de desinformación y clasificación de narrativas en medios digitales. El sistema utiliza un enfoque híbrido que combina lógica difusa para el etiquetado inicial y modelos predictivos para la clasificación final.</p>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-rocket"></i> Metodología y Técnicas</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>Etiquetado Híbrido</h4>
+                        <p>Implementación de un agente basado en Lógica Difusa (Fuzzy Logic) y léxicos especializados para generar etiquetas preliminares en grandes volúmenes de datos no estructurados.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Modelado Predictivo</h4>
+                        <p>Entrenamiento y validación de un modelo de Regresión Logística optimizado para clasificación binaria y multiclase.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Ingeniería de Datos</h4>
+                        <p>Aplicación de técnicas de Balanceo Sintético (SMOTE) para mitigar el sesgo en el set de datos, debido a la baja representatividad de noticias falsas frente a las reales.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Auditoría de Discrepancias</h4>
+                        <p>Creación de un umbral de sospecha ajustable, permitiendo calibrar la sensibilidad del modelo para reducir falsos negativos en la detección de noticias sensibles.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-tools"></i> Stack Tecnológico</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Scikit-learn</span>
+                    <span class="tech-tag">Imbalanced-learn (SMOTE)</span>
+                    <span class="tech-tag">Pandas</span>
+                    <span class="tech-tag">NLTK</span>
+                    <span class="tech-tag">Spacy</span>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-trophy"></i> Logros Técnicos</h3>
+                <ul class="structure-list">
+                    <li>Automatización del proceso de auditoría de noticias, reduciendo la dependencia de revisión humana en un primer nivel de filtrado.</li>
+                    <li>Implementación de un sistema escalable capaz de procesar y clasificar miles de registros con alta precisión a pesar del desbalance inherente en los datos de origen.</li>
+                </ul>
+            </section>
+
+            <footer style="text-align: center; margin-top: 50px; color: var(--text-muted);">
+                <p>Desarrollado por Carlos Rafael García Vargas</p>
+            </footer>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
