@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI Dashboard - Vehículos Eléctricos</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .details-container {
+            max-width: 900px;
+            margin: 120px auto 50px;
+            padding: 40px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .project-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-tagline {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .project-image-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .project-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .placeholder-image {
+            padding: 80px 20px;
+            color: var(--text-muted);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .placeholder-image i {
+            font-size: 3rem;
+            color: var(--accent);
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .content-section h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+        }
+
+        .content-section p {
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(96, 165, 250, 0.3);
+        }
+
+        .feature-item h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tech-tag {
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--accent-green);
+        }
+
+        .insights-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .insights-list li {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(168, 85, 247, 0.05);
+            border-left: 4px solid var(--accent-purple);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .insights-list h4 {
+            color: #fff;
+            margin-bottom: 8px;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+        }
+
+        /* Tooltip de Código */
+        .has-tooltip {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .code-tooltip {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            opacity: 0;
+            visibility: hidden;
+            width: 480px;
+            max-width: 80vw;
+            background: #1e1e1e !important;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 15px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+        }
+
+        .has-tooltip:hover .code-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .code-tooltip pre {
+            margin: 0;
+            white-space: pre-wrap;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #d4d4d4;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .method {
+            color: #dcdcaa;
+        }
+
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .details-container {
+                padding: 20px;
+                margin-top: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-bg"></div>
+
+    <nav class="navbar glass">
+        <div class="nav-brand">CGV</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Volver al Inicio</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="details-container glass fade-in visible">
+            <a href="index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Proyectos</a>
+
+            <header class="project-header">
+                <h1 class="project-title">Dashboard Interactivo de la Población de Vehículos Eléctricos (EV)</h1>
+                <p class="project-tagline">Power BI | DAX | Power Query | Python (EDA inicial)</p>
+            </header>
+
+            <div class="project-image-container">
+                <div class="placeholder-image">
+                    <img src="powerbi.jpg" alt="Dashboard Interactivo de la Población de Vehículos Eléctricos (EV)">
+                </div>
+            </div>
+
+            <section class="content-section">
+                <h3><i class="fas fa-crosshairs"></i> 1. El Problema (Contexto)</h3>
+                <p>El mercado de vehículos eléctricos está creciendo a un ritmo exponencial, pero los datos crudos (más
+                    de 280,000 registros) son difíciles de interpretar para la toma de decisiones estratégicas. El
+                    objetivo fue transformar este volumen de datos en un Dashboard Ejecutivo que permitiera identificar
+                    tendencias de adopción, marcas líderes y la eficiencia tecnológica de la flota.</p>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-cogs"></i> 2. Lo que hice (Proceso Técnico)</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4><i class="fas fa-search"></i> Análisis Exploratorio (EDA)</h4>
+                        <p>Identificación de valores nulos y limpieza de sesgos en la columna de "Electric Range"
+                            (autonomía).</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-project-diagram"></i> Modelado de Datos Avanzado</h4>
+                        <p>Creación de una Dimensión de Tiempo (Calendario) personalizada en DAX para habilitar análisis
+                            cronológicos. Establecimiento de relaciones 1: (Uno a Varios)* para asegurar la integridad
+                            referencial y el rendimiento del reporte.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-calculator"></i> Ingeniería de Medidas (DAX)</h4>
+                        <p>Cálculo de Crecimiento Año tras Año (YoY %) usando inteligencia de tiempo (PREVIOUSYEAR,
+                            CALCULATE). Medición de Eficiencia de Autonomía mediante iteradores (AVERAGEX y FILTER) para
+                            excluir datos no investigados. Segmentación dinámica de Elegibilidad CAFV para análisis de
+                            incentivos fiscales.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-eye"></i> 3. Visualización y User Experience (UX)</h3>
+                <p>Diseñé un dashboard interactivo compuesto por:</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4><i class="fas fa-tachometer-alt"></i> Panel de KPIs</h4>
+                        <p>Resumen instantáneo de flota total, % de adopción de vehículos 100% eléctricos (BEV) y rango
+                            promedio.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-map-marked-alt"></i> Análisis Geográfico</h4>
+                        <p>Mapa de burbujas para identificar la concentración de vehículos por condado y estado.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-filter"></i> Filtros Inteligentes</h4>
+                        <p>Segmentadores por marca, año y estado de elegibilidad para incentivos.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-lightbulb text-accent-gold"></i> 4. Conclusiones y Hallazgos Clave (Insights)</h3>
+                <ul class="insights-list">
+                    <li>
+                        <h4>Dominio de Mercado</h4>
+                        <p>Tesla lidera la transición con una cuota de mercado masiva, destacando el Model Y como el
+                            vehículo más popular del dataset.</p>
+                    </li>
+                    <li>
+                        <h4>Aceleración Tecnológica</h4>
+                        <p>A partir de 2020, la curva de adopción muestra un crecimiento superior al 30% anual, lo que
+                            indica una madurez en la confianza del consumidor.</p>
+                    </li>
+                    <li>
+                        <h4>Salto en Autonomía</h4>
+                        <p>El rango promedio de los vehículos ha mejorado sustancialmente, pasando de promedios de 100
+                            km en modelos antiguos a más de 300 km en las versiones más recientes.</p>
+                    </li>
+                    <li>
+                        <h4>Concentración Urbana</h4>
+                        <p>La adopción no es uniforme; se concentra fuertemente en condados con mayor infraestructura de
+                            carga (como King County), lo que sugiere que la infraestructura es el principal motor de
+                            venta.</p>
+                    </li>
+                    <li>
+                        <h4>Mix Tecnológico</h4>
+                        <p>Existe una tendencia clara de migración de Vehículos Híbridos Enchufables (PHEV) hacia
+                            Vehículos de Batería Pura (BEV), impulsada por la mejora en las baterías.</p>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-calculator"></i> Diccionario de Fórmulas DAX usado en el proyecto</h3>
+                <div class="feature-grid">
+                    <div class="feature-item has-tooltip">
+                        <h4><i class="fas fa-list-ol"></i> 1. Métrica Base (Conteo de Flota)</h4>
+                        <p>Esta medida sirve como la base para todos los cálculos de proporción y crecimiento.</p>
+                        <div class="code-tooltip">
+                            <pre><code><span class="method">Total Vehiculos</span> = <span class="keyword">COUNTROWS</span>(<span class="string">'Electric_Vehicle_Population_Data'</span>)</code></pre>
+                        </div>
+                        <p style="font-size: 0.85rem; margin-top: 10px; color: var(--text-muted);"><strong>Valor
+                                Técnico:</strong> Establece el denominador dinámico para el análisis de participación de
+                            mercado.</p>
+                    </div>
+
+                    <div class="feature-item has-tooltip">
+                        <h4><i class="fas fa-chart-pie"></i> 2. Penetración de Tecnología</h4>
+                        <p>Utiliza lógica de filtrado de contexto para aislar segmentos específicos de la flota.</p>
+                        <div class="code-tooltip">
+                            <pre><code><span class="method">% BEV</span> = 
+<span class="keyword">DIVIDE</span>(
+    <span class="keyword">CALCULATE</span>([Total Vehiculos], <span class="string">'Electric_Vehicle_Population_Data'</span>[Electric Vehicle Type] = <span class="string">"Battery Electric Vehicle (BEV)"</span>),
+    [Total Vehiculos],
+    0
+)</code></pre>
+                        </div>
+                        <p style="font-size: 0.85rem; margin-top: 10px; color: var(--text-muted);"><strong>Valor
+                                Técnico:</strong> Implementa CALCULATE y DIVIDE con manejo de errores para medir la
+                            transición hacia eléctricos puros.</p>
+                    </div>
+
+                    <div class="feature-item has-tooltip">
+                        <h4><i class="fas fa-vial"></i> 3. Eficiencia Tecnológica</h4>
+                        <p>A diferencia de un promedio simple, esta medida usa iteradores y filtros para eliminar datos
+                            atípicos.</p>
+                        <div class="code-tooltip">
+                            <pre><code><span class="method">Rango Promedio (Autonomía)</span> = 
+<span class="keyword">AVERAGEX</span>(
+    <span class="keyword">FILTER</span>(<span class="string">'Electric_Vehicle_Population_Data'</span>, <span class="string">'Electric_Vehicle_Population_Data'</span>[Electric Range] > 0),
+    <span class="string">'Electric_Vehicle_Population_Data'</span>[Electric Range]
+)</code></pre>
+                        </div>
+                        <p style="font-size: 0.85rem; margin-top: 10px; color: var(--text-muted);"><strong>Valor
+                                Técnico:</strong> Uso de funciones iteradoras (AVERAGEX) y funciones de tabla (FILTER)
+                            para mejorar la calidad del dato.</p>
+                    </div>
+
+                    <div class="feature-item has-tooltip">
+                        <h4><i class="fas fa-history"></i> 4. Inteligencia de Tiempo</h4>
+                        <p>La fórmula más avanzada, requiere un modelo de datos relacionado con una tabla de
+                            dimensiones.</p>
+                        <div class="code-tooltip">
+                            <pre><code><span class="method">Crecimiento Año tras Año (YoY)</span> = 
+<span class="keyword">VAR</span> VehiculosAnioAnterior = 
+    <span class="keyword">CALCULATE</span>([Total Vehiculos], <span class="keyword">PREVIOUSYEAR</span>(<span class="string">'Calendario'</span>[Date]))
+<span class="keyword">RETURN</span>
+    <span class="keyword">DIVIDE</span>([Total Vehiculos] - VehiculosAnioAnterior, VehiculosAnioAnterior, 0)</code></pre>
+                        </div>
+                        <p style="font-size: 0.85rem; margin-top: 10px; color: var(--text-muted);"><strong>Valor
+                                Técnico:</strong> Implementación de Variables (VAR) y funciones de Inteligencia de
+                            Tiempo (PREVIOUSYEAR).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-star"></i> Habilidades Demostradas</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4><i class="fas fa-broom"></i> Limpieza de Datos</h4>
+                        <p>Transformación de datos brutos en información útil.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-code"></i> DAX Avanzado</h4>
+                        <p>Creación de lógica de negocio compleja.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-chart-bar"></i> Data Storytelling</h4>
+                        <p>Diseño visual orientado a responder preguntas de negocio de forma rápida.</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer style="text-align: center; margin-top: 50px; color: var(--text-muted);">
+                <p>Desarrollado por Carlos Rafael García Vargas</p>
+            </footer>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
