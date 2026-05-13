@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraper de Estadísticas de Fútbol - Detalles del Proyecto</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .details-container {
+            max-width: 900px;
+            margin: 120px auto 50px;
+            padding: 40px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .project-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-tagline {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .content-section h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+        }
+
+        .feature-item h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            padding: 8px 16px;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+            border: none;
+        }
+
+        .github-link:hover {
+            background: var(--accent-purple);
+        }
+
+        .status-list {
+            list-style: none;
+        }
+
+        .status-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .status-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2.2rem;
+            }
+
+            .details-container {
+                padding: 20px;
+                margin-top: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-bg"></div>
+
+    <nav class="navbar glass">
+        <div class="nav-brand">CGV</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Volver al Inicio</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="details-container glass fade-in visible">
+            <a href="index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Proyectos</a>
+
+            <header class="project-header">
+                <h1 class="project-title">Scraper de Estadísticas de Fútbol</h1>
+                <p class="project-tagline">Temporada 2025-2026</p>
+            </header>
+
+            <section class="content-section">
+                <p>Este script automatiza la extracción de datos deportivos desde portales web dinámicos. Está diseñado
+                    específicamente para navegar de forma indetectable y extraer múltiples estructuras de datos (tablas)
+                    en una sola ejecución.</p>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-cogs"></i> Lo que hace el código actualmente</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>Navegación Sigilosa</h4>
+                        <p>Utiliza <strong>undetected-chromedriver</strong> para evitar ser bloqueado por sistemas de
+                            seguridad perimetral durante la sesión.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Detección Dinámica</h4>
+                        <p>El script localiza y contabiliza todas las tablas de datos presentes en la página (ej. 17
+                            tablas encontradas en la temporada 2025-2026).</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Procesamiento con Pandas</h4>
+                        <p>Convierte el contenido HTML de las tablas en estructuras de datos (DataFrames) para su
+                            posterior exportación.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Compatibilidad con Windows</h4>
+                        <p>Incluye lógica para gestionar el cierre del navegador y mitigar errores de controlador
+                            (WinError 6) comunes en este sistema operativo.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-laptop-code"></i> Tecnologías Utilizadas</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Selenium</span>
+                    <span class="tech-tag">Undetected-Chromedriver</span>
+                    <span class="tech-tag">Pandas</span>
+                    <span class="tech-tag">Windows Terminal (PowerShell)</span>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3><i class="fas fa-tasks"></i> Estado del Proyecto</h3>
+                <p>Actualmente, el script completa el ciclo de vida:</p>
+                <ul class="status-list">
+                    <li>Apertura del navegador.</li>
+                    <li>Escaneo de tablas por temporada.</li>
+                    <li>Intento de guardado en CSV.</li>
+                    <li>Cierre seguro de la sesión.</li>
+                </ul>
+                <p style="margin-top: 15px; color: var(--text-muted);"><em>Este proyecto es parte de mi portafolio de
+                        automatización y procesamiento de datos.</em></p>
+
+                <a href="https://github.com/crgv7/scrapperfutbol" target="_blank" class="github-link">
+                    <i class="fab fa-github"></i> Ver Repositorio en GitHub
+                </a>
+            </section>
+
+            <footer style="text-align: center; margin-top: 50px; color: var(--text-muted);">
+                <p>Desarrollado por Carlos Rafael García Vargas</p>
+            </footer>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
