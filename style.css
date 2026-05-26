@@ -382,6 +382,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
+    overflow: visible;
 }
 
 .col-span-2 {
@@ -393,6 +394,12 @@ body {
     position: relative;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 16px;
+    overflow: visible;
+}
+
+.project-card:has(.dropdown:hover),
+.project-card:has(.dropdown:focus-within) {
+    z-index: 100;
 }
 
 .project-card::before {
@@ -480,11 +487,11 @@ body {
     box-shadow: var(--glass-shadow);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
-    z-index: 100;
+    z-index: 9999;
     top: 100%;
     left: 0;
     margin-top: 10px;
-    overflow: hidden;
+    overflow: visible;
     opacity: 0;
     transform: translateY(-10px);
     transition: all 0.3s ease;
